@@ -151,9 +151,9 @@ public class MDIFrameButton extends JButton{
 			aquaMouseOverIcon = new ImageIcon(imageURL3);
 			break;				
 		case MDIFrameButton.CLOSE_BUTTON:
-			URL imageURL4= this.getClass().getResource( "/res/main/images/aqua-red.gif" );
+			URL imageURL4= this.getClass().getResource( "/res/images/aqua-red.gif" );
 			aquaIcon = new ImageIcon(imageURL4);	
-			URL imageURL5= this.getClass().getResource( "/res/main/images/aqua-red-mouseover.gif" );
+			URL imageURL5= this.getClass().getResource( "/res/images/aqua-red-mouseover.gif" );
 			aquaMouseOverIcon = new ImageIcon(imageURL5);
 			break;	
 		}
