@@ -57,6 +57,7 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 		myLabel = new JLabel( title, icon, SwingConstants.TRAILING );
 		myLabel.setLabelFor( component );
 		myLabel.setOpaque( false );
+		myLabel.setIconTextGap( UIManager.getInt( "TabbedPane.textIconGap" ) );
 		JPanel container = new JPanel( new FlowLayout( FlowLayout.CENTER, 5, 1 ) );
 		container.setOpaque( false );
 		container.add( myLabel );
