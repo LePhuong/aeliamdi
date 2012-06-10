@@ -25,7 +25,7 @@ The general steps to getting started are:
 
 ===Download AeliaMDI===
 
-You can download the binary distributions at the [http://code.google.com/p/aeliamdi/downloads/list/ AeliaMDI Google Code page]
+You can download the binary distributions at the [http://code.google.com/p/aeliamdi/downloads/list?q=label:Featured AeliaMDI Google Code page]
 
 If you download the `aeliamdi-with-deps-1.0.0.jar` you do not need to download any dependencies. Otherwise, be sure to download those and include them in your classpath.
 
