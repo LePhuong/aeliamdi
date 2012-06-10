@@ -27,6 +27,10 @@ The general steps to getting started are:
 
 You can download the binary distributions at the [http://code.google.com/p/aeliamdi/downloads/list/ AeliaMDI Google Code page]
 
+If you download the `aeliamdi-with-deps-1.0.0.jar` you do not need to download any dependencies. Otherwise, be sure to download those and include them in your classpath.
+
+Currently AeliaMDI only requires the gdswing library by Guy Davis. If you downloaded the with-deps JAR, you've already got what you need!
+
 ===Import Packages===
 
 Ensure that you have `aeliamdi-1.0.0.jar` in your `CLASSPATH`.
