@@ -2,12 +2,14 @@ package org.aeliamdi;
 
 import org.aeliamdi.util.LinesBorder;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
 import java.net.URL;
 
 /**
@@ -34,10 +36,19 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 		this.mdiTabbedPane = mdiTabbedPane;
 		this.component = component;
 
-		URL closeURL = this.getClass().getResource( "/res/images/tab-close.gif" );
-		URL mouseoverURL = this.getClass().getResource( "/res/images/tab-close-mouseover.gif" );
-		closeIcon = new ImageIcon( closeURL );
-		hoverIcon = new ImageIcon( mouseoverURL );
+		try
+		{
+			URL closeURL = this.getClass().getResource( "/res/images/tab-close.gif" );
+			URL mouseoverURL = this.getClass().getResource( "/res/images/tab-close-mouseover.gif" );
+			Image closeImage = ImageIO.read( closeURL );
+			Image mouseoverImage = ImageIO.read( mouseoverURL );
+			closeIcon = new ImageIcon( closeImage );
+			hoverIcon = new ImageIcon( mouseoverImage );
+		}
+		catch( IOException e )
+		{
+			e.printStackTrace();
+		}
 
 		mdiTabbedPane.addPropertyChangeListener( this );
 
@@ -54,14 +65,17 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 		container.add( separator );
 		add( container, BorderLayout.WEST );
 
-		closeLabel = new JLabel( closeIcon, SwingConstants.RIGHT );
-		closeLabel.setOpaque( false );
-		closeLabel.setVerticalAlignment( SwingConstants.CENTER );
-		closeLabel.setIconTextGap( 0 );
-		closeLabel.setBorder( new LinesBorder( null, new Insets( 0, 0, 0, 2 ) ) );
-		closeLabel.addMouseListener( this );
+		if( closeIcon != null && hoverIcon != null )
+		{
+			closeLabel = new JLabel( closeIcon, SwingConstants.RIGHT );
+			closeLabel.setOpaque( false );
+			closeLabel.setVerticalAlignment( SwingConstants.CENTER );
+			closeLabel.setIconTextGap( 0 );
+			closeLabel.setBorder( new LinesBorder( null, new Insets( 0, 0, 0, 2 ) ) );
+			closeLabel.addMouseListener( this );
 
-		add( closeLabel );
+			add( closeLabel );
+		}
 	}
 
 	@Override
