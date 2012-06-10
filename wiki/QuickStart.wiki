@@ -157,4 +157,4 @@ public void setupLookAndFeel( String ID )
 If you don't know the id of your look and feel, then you can call the below when your look and feel is set.
 
 {{{
-System.out.println(UIManager.getLookAndFeel().getID()); }}}
+System.out.println(UIManager.getLookAndFeel().getID());
