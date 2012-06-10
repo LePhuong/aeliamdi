@@ -63,17 +63,6 @@ public class MDITabbedPane extends JTabbedPane{
 
 		MDITabTitle newComponent = new MDITabTitle( parentFrame, this, title, icon, component );
 		setTabComponentAt( indexOfComponent( component ), newComponent );
-
-		/*SwingUtilities.invokeLater( new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				Component tabComponent = getTabComponentAt( getTabCount() - 1 );
-
-				System.out.println( tabComponent );
-			}
-		} );*/
 	}
 
 	/**
