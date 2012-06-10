@@ -1,7 +1,9 @@
-<project name="aeliamdi" default="delete_temp" basedir=".">
-    <description>AeliaMDI build file</description>
+<project name="aeliamdi_nightly" default="delete_temp" basedir=".">
+    <description>AeliaMDI nightly build file</description>
 
-    <property name="version" value="1.0.1"/>
+    <tstamp/>
+
+    <property name="version" value="${DSTAMP}"/>
 
     <property name="temp_dir" location="out"/>
 
@@ -10,7 +12,7 @@
     <property name="examples_src" location="src/examples/"/>
     <property name="main_output" location="${temp_dir}/main"/>
     <property name="examples_output" location="${temp_dir}/examples"/>
-    <property name="dist_dir" location="dist/"/>
+    <property name="dist_dir" location="nightly/"/>
 
     <property name="project_name" value="aeliamdi"/>
     <property name="main_jar_name" value="${project_name}-${version}"/>
@@ -26,8 +28,7 @@
     </target>
 
     <target name="compile_main" depends="create_dirs" description="compile the main source">
-        <javac srcdir="${main_src}" excludes="examples/**/*" destdir="${main_output}" classpath="${deps}/gdswing.jar"
-               fork="true"/>
+        <javac srcdir="${main_src}" excludes="examples/**/*" destdir="${main_output}" classpath="${deps}/gdswing.jar" fork="true"/>
     </target>
 
     <target name="javadoc_main" depends="compile_main" description="generate javadocs">
@@ -38,8 +39,7 @@
     </target>
 
     <target name="compile_examples" depends="compile_main, create_dirs" description="Compile the example source">
-        <javac srcdir="${examples_src}" excludes="src/**/*" destdir="${examples_output}"
-               classpath="${main_output};${deps}/gdswing.jar"/>
+        <javac srcdir="${examples_src}" excludes="src/**/*" destdir="${examples_output}" classpath="${main_output};${deps}/gdswing.jar"/>
     </target>
 
     <target name="main_jar" depends="compile_examples, javadoc_main, create_dirs" description="Create the main JAR">
