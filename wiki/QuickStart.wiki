@@ -2,10 +2,17 @@
 
 ==Introduction==
 
-AeliaMDI is a small Multiple Document Interface (MDI) Framework that facilitates the creation of professional looking MDI applications. With Swing `JDesktopPane` and `JInternalFrame` are provided to use with MDI applications. But JInternalFrame has a rather annoying behaviour. When maximized JInternalFrame only occupies the whole area of the desktop pane with its title bar as is. What a general GUI user expects is that the title bar should vanish and the minimize, maximize and close buttons should appear in the menubar of main application frame. Due to this many programmers do not use JInternalFrame. Instade they use closeable Tabs to represent their documents. But in this approach they loose the facility to place to documents side by side in "restored" state to compare them.
-AeliaMDI is made to solve exactly these two problems. It manages your "views" as closable tabs (with system menu) when maximized and as internal frames when restored or minimized.
+AeliaMDI is a lightweight MDI Framework, based off of AceMDI, that facilitates the creation of professional looking MDI applications.
 
-Please note that AeliaMDI currently supports only windows and metal (including ocean) look and feels. As of now, Motif and GTK style look and feels are not supported. If you want to support Motif and GTK or any other look and feel, please take a look at `CustomMDIButton.java` in the `examples` folder. At the end of this guide, the procedure is exlained in the topic *Supporting A Custom Look and Feel*.
+When developing Swing Applications, `JDesktopPane` and `JInternalFrame` are provided for use with MDI applications. However, `JInternalFrame` has some pretty annoying quirks. For instance, when a `JInternalFrame` is maximized it only occupies the whole area of the desktop pane with its title bar as is. What a general user might expect is that the title bar should vanish and the minimize, maximize and close buttons should appear in the menubar of main application frame.
+
+Due to this, many prefer not use `JInternalFrame` and instead opt for closeable tabs to represent their documents. However, in this approach they lose the facility to place documents side by side in a "restored" state to compare them.
+
+AeliaMDI is designed to solve exactly these two problems. It manages your "views" as closable tabs when maximized and as internal frames when restored or minimized.
+
+AeliaMDI is a fork of the last stable release of AceMDI available. Thanks go out to Pritam G. Barhate for creating such a great MDI library.
+
+Migration from AceMDI to AeliaMDI is pretty straight-forward, but unfortunately there are certain small changes that prevent it from being a drop-in replacement.
 
 ==Getting Started==
 
