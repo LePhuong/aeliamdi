@@ -60,10 +60,8 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 		myLabel.setIconTextGap( UIManager.getInt( "TabbedPane.textIconGap" ) );
 		JPanel container = new JPanel( new FlowLayout( FlowLayout.CENTER, 5, 1 ) );
 		container.setOpaque( false );
+		myLabel.setBorder( new LinesBorder( null, new Insets( 0, 0, 0, 6 ) ) );
 		container.add( myLabel );
-		JPanel separator = new JPanel();
-		separator.setOpaque( false );
-		container.add( separator );
 		add( container, BorderLayout.WEST );
 
 		if( closeIcon != null && hoverIcon != null )
