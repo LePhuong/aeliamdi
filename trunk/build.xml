@@ -12,8 +12,10 @@
     <property name="examples_output" location="${temp_dir}/examples"/>
     <property name="dist_dir" location="dist/"/>
 
-    <property name="main_jar_name" value="aeliamdi-${version}"/>
-    <property name="examples_jar_name" value="aeliamdi-examples-${version}"/>
+    <property name="project_name" value="aeliamdi"/>
+    <property name="main_jar_name" value="${project_name}-${version}"/>
+    <property name="main_jar_with_deps_name" value="${project_name}-with-deps-${version}"/>
+    <property name="examples_jar_name" value="${project_name}-examples-${version}"/>
 
     <target name="create_dirs"
             description="compile the framework source ">
@@ -40,6 +42,12 @@
             </fileset>
         </copy>
         <jar destfile="${dist_dir}/${main_jar_name}.jar" basedir="${main_output}" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+            </manifest>
+        </jar>
+        <jar destfile="${dist_dir}/${main_jar_with_deps_name}.jar" basedir="${main_output}" compress="true">
+            <zipgroupfileset dir="${deps}" includes="*.jar"/>
             <manifest>
                 <attribute name="Built-By" value="Jennifer Gohlke"/>
             </manifest>
