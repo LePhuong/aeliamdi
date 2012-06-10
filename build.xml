@@ -1,0 +1,86 @@
+<project name="aeliamdi" default="delete_temp" basedir=".">
+    <description>AeliaMDI build file</description>
+
+    <property name="version" value="1.0.0"/>
+
+    <property name="temp_dir" location="out"/>
+
+    <property name="deps" location="deps/"/>
+    <property name="main_src" location="src/"/>
+    <property name="examples_src" location="src/examples/"/>
+    <property name="main_output" location="${temp_dir}/main"/>
+    <property name="examples_output" location="${temp_dir}/examples"/>
+    <property name="dist_dir" location="dist/"/>
+
+    <property name="main_jar_name" value="aeliamdi-${version}"/>
+    <property name="examples_jar_name" value="aeliamdi-examples-${version}"/>
+
+    <target name="create_dirs"
+            description="compile the framework source ">
+        <mkdir dir="${temp_dir}"/>
+        <mkdir dir="${main_output}"/>
+        <mkdir dir="${examples_output}"/>
+    </target>
+
+    <target name="compile_main" depends="create_dirs" description="compile the main source">
+        <javac srcdir="${main_src}" destdir="${main_output}" classpath="${deps}/gdswing.jar" fork="true"/>
+    </target>
+
+    <target name="javadoc_main" depends="compile_main" description="generate javadocs">
+        <javadoc sourcepath="${main_src}" source="1.5" destdir="apidocs"/>
+    </target>
+
+    <target name="compile_examples" depends="compile_main, create_dirs" description="Compile the example source">
+        <javac srcdir="${examples_src}" destdir="${examples_output}" classpath="${main_output};${deps}/gdswing.jar"/>
+    </target>
+
+    <target name="main_jar" depends="compile_examples, javadoc_main, create_dirs" description="Create the main JAR">
+        <copy todir="${main_output}/res/">
+            <fileset dir="${main_src}/res/" excludes="**/thumbs.db">
+            </fileset>
+        </copy>
+        <jar destfile="${dist_dir}/${main_jar_name}.jar" basedir="${main_output}" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+            </manifest>
+        </jar>
+        <jar destfile="${dist_dir}/${main_jar_name}-sources.jar" basedir="${main_src}" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+            </manifest>
+        </jar>
+        <jar destfile="${dist_dir}/${main_jar_name}-javadoc.jar" basedir="apidocs" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="examples_jar" depends="main_jar, compile_examples, compile_main , create_dirs"
+            description="Create the examples jar">
+        <copy todir="${examples_output}/images">
+            <fileset dir="${examples_src}/images" excludes="**/thumbs.db">
+            </fileset>
+        </copy>
+        <jar destfile="${dist_dir}/${examples_jar_name}.jar" basedir="${examples_output}" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+                <attribute name="Main-Class" value="MDITester"/>
+                <attribute name="Class-Path" value="./${main_jar_name}.jar"/>
+            </manifest>
+        </jar>
+        <jar destfile="${dist_dir}/${examples_jar_name}-sources.jar" basedir="${examples_src}" compress="true">
+            <manifest>
+                <attribute name="Built-By" value="Jennifer Gohlke"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="delete_temp" depends="main_jar, examples_jar, compile_examples, compile_main, create_dirs"
+            description="Delete temp files">
+        <delete includeEmptyDirs="true">
+            <fileset dir="${temp_dir}"/>
+        </delete>
+    </target>
+
+</project>
