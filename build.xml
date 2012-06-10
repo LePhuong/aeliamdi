@@ -47,7 +47,7 @@
             </manifest>
         </jar>
         <jar destfile="${dist_dir}/${main_jar_with_deps_name}.jar" basedir="${main_output}" compress="true">
-            <zipgroupfileset dir="${deps}" includes="*.jar"/>
+            <zipgroupfileset dir="${deps}" includes="*.jar" excludes="*-javadocs.jar, *-sources.jar"/>
             <manifest>
                 <attribute name="Built-By" value="Jennifer Gohlke"/>
             </manifest>

@@ -34,8 +34,8 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 		this.mdiTabbedPane = mdiTabbedPane;
 		this.component = component;
 
-		URL closeURL = this.getClass().getResource( "/main/images/tab-close.gif" );
-		URL mouseoverURL = this.getClass().getResource( "/main/images/tab-close-mouseover.gif" );
+		URL closeURL = this.getClass().getResource( "/res/images/tab-close.gif" );
+		URL mouseoverURL = this.getClass().getResource( "/res/images/tab-close-mouseover.gif" );
 		closeIcon = new ImageIcon( closeURL );
 		hoverIcon = new ImageIcon( mouseoverURL );
 
