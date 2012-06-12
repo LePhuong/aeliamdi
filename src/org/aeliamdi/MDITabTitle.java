@@ -82,9 +82,9 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 	{
 		if( evt.getPropertyName().equals( "indexForTitle" ) )
 		{
-			Component theComp = mdiTabbedPane.getComponent( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
+			Component theTabComp = mdiTabbedPane.getTabComponentAt( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
 
-			if( theComp.equals( component ) )
+			if( theTabComp.equals( this ) )
 			{
 				String title = mdiTabbedPane.getTitleAt( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
 				myLabel.setText( title );
