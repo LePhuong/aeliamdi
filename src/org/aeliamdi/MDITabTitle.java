@@ -82,8 +82,13 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 	{
 		if( evt.getPropertyName().equals( "indexForTitle" ) )
 		{
-			String title = mdiTabbedPane.getTitleAt( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
-			myLabel.setText( title );
+			Component theComp = mdiTabbedPane.getComponent( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
+
+			if( theComp.equals( component ) )
+			{
+				String title = mdiTabbedPane.getTitleAt( Integer.parseInt( String.valueOf( evt.getNewValue() ) ) );
+				myLabel.setText( title );
+			}
 		}
 	}
 
@@ -117,7 +122,9 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 	public void mouseEntered( MouseEvent e )
 	{
 		if( closeIcon.equals( hoverIcon ) )
+		{
 			return;
+		}
 
 		closeLabel.setIcon( hoverIcon );
 		closeLabel.revalidate();
@@ -127,7 +134,9 @@ public class MDITabTitle extends JPanel implements PropertyChangeListener, Mouse
 	public void mouseExited( MouseEvent e )
 	{
 		if( closeIcon.equals( hoverIcon ) )
+		{
 			return;
+		}
 
 		closeLabel.setIcon( closeIcon );
 		closeLabel.revalidate();
